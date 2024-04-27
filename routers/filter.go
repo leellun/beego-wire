@@ -10,7 +10,7 @@ import (
 )
 
 var FilterUser = func(ctx *context.Context) {
-	_, ok := ctx.Input.Session(config.LoginSessionName).(models.UsersUser)
+	_, ok := ctx.Input.Session(config.LoginSessionName).(models.User)
 
 	if !ok {
 		if ctx.Input.IsAjax() {
