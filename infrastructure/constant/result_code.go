@@ -9,4 +9,5 @@ const (
 	UNAUTHORIZED          HttpCode = 403 //未授权
 	NOT_FOUND             HttpCode = 404
 	INTERNAL_SERVER_ERROR HttpCode = 500
+	NOT_IMPLEMENTED       HttpCode = 500
 )

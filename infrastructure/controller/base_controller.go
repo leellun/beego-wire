@@ -8,9 +8,9 @@ type BaseController struct {
 	beego.Controller
 }
 
-// WriteJson JsonResult 响应 json 结果
+// WriteJson JsonResult 响应 xjson 结果
 func (c *BaseController) WriteJson(data interface{}) {
-	c.Data["json"] = data
+	c.Data["xjson"] = data
 	err := c.ServeJSON()
 	if err != nil {
 		return

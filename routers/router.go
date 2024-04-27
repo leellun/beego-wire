@@ -1,5 +1,4 @@
-// Package routers
-// @APIVersion 1.0.0
+// Package routers @APIVersion 1.0.0
 // @Title beego Test API
 // @Description beego has a very cool tools to autogenerate documents for your API
 // @Contact astaxie@gmail.com
@@ -10,239 +9,99 @@ package routers
 
 import (
 	beego "github.com/beego/beego/v2/server/web"
-	controller "zhiqu/controllers"
+	"zhiqu/controllers"
+	"zhiqu/wire"
 )
 
 func init() {
+	beanFactory, err := wire.NewApp()
+	if err != nil {
+		panic(err)
+	}
 	ns := beego.NewNamespace("/v1",
 
-		beego.NSNamespace("/auth_permission",
+		beego.NSNamespace("/category",
 			beego.NSInclude(
-				&controller.AuthPermissionController{},
+				beanFactory.CategoryController,
 			),
 		),
 
-		beego.NSNamespace("/files_category",
+		beego.NSNamespace("/collect_video",
 			beego.NSInclude(
-				&controller.FilesCategoryController{},
+				&controllers.CollectVideoController{},
 			),
 		),
 
-		beego.NSNamespace("/django_migrations",
+		beego.NSNamespace("/history",
 			beego.NSInclude(
-				&controller.DjangoMigrationsController{},
+				&controllers.HistoryController{},
 			),
 		),
 
-		beego.NSNamespace("/django_session",
+		beego.NSNamespace("/user",
 			beego.NSInclude(
-				&controller.DjangoSessionController{},
+				beanFactory.UserController,
 			),
 		),
 
-		beego.NSNamespace("/files_comment",
+		beego.NSNamespace("/media",
 			beego.NSInclude(
-				&controller.FilesCommentController{},
+				&controllers.MediaController{},
 			),
 		),
 
-		beego.NSNamespace("/files_encodeprofile",
+		beego.NSNamespace("/media_category",
 			beego.NSInclude(
-				&controller.FilesEncodeprofileController{},
+				&controllers.MediaCategoryController{},
 			),
 		),
 
-		beego.NSNamespace("/django_site",
+		beego.NSNamespace("/media_later",
 			beego.NSInclude(
-				&controller.DjangoSiteController{},
+				&controllers.MediaLaterController{},
 			),
 		),
 
-		beego.NSNamespace("/actions_media_action",
+		beego.NSNamespace("/media_tags",
 			beego.NSInclude(
-				&controller.ActionsMediaActionController{},
+				&controllers.MediaTagsController{},
 			),
 		),
 
-		beego.NSNamespace("/auth_group",
+		beego.NSNamespace("/users_block",
 			beego.NSInclude(
-				&controller.AuthGroupController{},
+				&controllers.UsersBlockController{},
 			),
 		),
 
-		beego.NSNamespace("/django_content_type",
+		beego.NSNamespace("/comment",
 			beego.NSInclude(
-				&controller.DjangoContentTypeController{},
+				&controllers.CommentController{},
 			),
 		),
 
-		beego.NSNamespace("/auth_token",
+		beego.NSNamespace("/media_playlist",
 			beego.NSInclude(
-				&controller.AuthTokenController{},
+				&controllers.MediaPlaylistController{},
 			),
 		),
 
-		beego.NSNamespace("/django_admin_log",
+		beego.NSNamespace("/media_playlistmedia",
 			beego.NSInclude(
-				&controller.DjangoAdminLogController{},
+				&controllers.MediaPlaylistmediaController{},
 			),
 		),
 
-		beego.NSNamespace("/account_email_confirmation",
+		beego.NSNamespace("/rating",
 			beego.NSInclude(
-				&controller.AccountEmailConfirmationController{},
+				&controllers.RatingController{},
 			),
 		),
 
-		beego.NSNamespace("/files_media_category",
-			beego.NSInclude(
-				&controller.FilesMediaCategoryController{},
-			),
-		),
-
-		beego.NSNamespace("/files_media_rating_category",
-			beego.NSInclude(
-				&controller.FilesMediaRatingCategoryController{},
-			),
-		),
-
-		beego.NSNamespace("/files_encoding",
-			beego.NSInclude(
-				&controller.FilesEncodingController{},
-			),
-		),
-
-		beego.NSNamespace("/files_license",
-			beego.NSInclude(
-				&controller.FilesLicenseController{},
-			),
-		),
-
-		beego.NSNamespace("/files_language",
-			beego.NSInclude(
-				&controller.FilesLanguageController{},
-			),
-		),
-
-		beego.NSNamespace("/files_media_tags",
-			beego.NSInclude(
-				&controller.FilesMediaTagsController{},
-			),
-		),
-
-		beego.NSNamespace("/files_tag",
-			beego.NSInclude(
-				&controller.FilesTagController{},
-			),
-		),
-
-		beego.NSNamespace("/socialaccount_socialaccount",
-			beego.NSInclude(
-				&controller.SocialaccountSocialaccountController{},
-			),
-		),
-
-		beego.NSNamespace("/files_playlist",
-			beego.NSInclude(
-				&controller.FilesPlaylistController{},
-			),
-		),
-
-		beego.NSNamespace("/socialaccount_socialapp",
-			beego.NSInclude(
-				&controller.SocialaccountSocialappController{},
-			),
-		),
-
-		beego.NSNamespace("/socialaccount_socialapp_sites",
-			beego.NSInclude(
-				&controller.SocialaccountSocialappSitesController{},
-			),
-		),
-
-		beego.NSNamespace("/files_rating_category",
-			beego.NSInclude(
-				&controller.FilesRatingCategoryController{},
-			),
-		),
-
-		beego.NSNamespace("/files_playlistmedia",
-			beego.NSInclude(
-				&controller.FilesPlaylistmediaController{},
-			),
-		),
-
-		beego.NSNamespace("/files_rating",
-			beego.NSInclude(
-				&controller.FilesRatingController{},
-			),
-		),
-
-		beego.NSNamespace("/files_subtitle",
-			beego.NSInclude(
-				&controller.FilesSubtitleController{},
-			),
-		),
-
-		beego.NSNamespace("/users_channel",
-			beego.NSInclude(
-				&controller.UsersChannelController{},
-			),
-		),
-
-		beego.NSNamespace("/users_channel_subscribers",
-			beego.NSInclude(
-				&controller.UsersChannelSubscribersController{},
-			),
-		),
-
-		beego.NSNamespace("/users_notification",
-			beego.NSInclude(
-				&controller.UsersNotificationController{},
-			),
-		),
-
-		beego.NSNamespace("/users_user_groups",
-			beego.NSInclude(
-				&controller.UsersUserGroupsController{},
-			),
-		),
-
-		beego.NSNamespace("/users_user_user_permissions",
-			beego.NSInclude(
-				&controller.UsersUserUserPermissionsController{},
-			),
-		),
-
-		beego.NSNamespace("/users_user",
-			beego.NSInclude(
-				&controller.UsersUserController{},
-			),
-		),
-
-		beego.NSNamespace("/files_media",
-			beego.NSInclude(
-				&controller.FilesMediaController{},
-			),
-		),
-
-		beego.NSNamespace("/auth_group_permissions",
-			beego.NSInclude(
-				&controller.AuthGroupPermissionsController{},
-			),
-		),
-
-		beego.NSNamespace("/socialaccount_socialtoken",
-			beego.NSInclude(
-				&controller.SocialaccountSocialtokenController{},
-			),
-		),
-
-		beego.NSNamespace("/account_email_address",
-			beego.NSInclude(
-				&controller.AccountEmailAddressController{},
-			),
-		),
+		beego.NSNamespace("/reply", beego.NSInclude(&controllers.ReplyController{})),
+		beego.NSNamespace("/login", beego.NSInclude(beanFactory.LoginController)),
 	)
+	//beego.SetStaticPath("/swagger", "swagger")
 	beego.AddNamespace(ns)
+	// 注册Swagger路由
 }
