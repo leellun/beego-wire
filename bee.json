@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "go_install": false,
+  "watch_ext": [".go"],
+  "dir_structure": {
+    "watch_all": false,
+    "controllers": "app",
+    "models": "",
+    "others": []
+  },
+  "enable_reload": false
+}
