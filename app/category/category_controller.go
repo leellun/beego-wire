@@ -1,30 +1,12 @@
 package category
 
-import (
-	"encoding/json"
-	"strconv"
-	"zhiqu/models"
-
-	beego "github.com/beego/beego/v2/server/web"
-)
-
 // Controller operations for Category
 type Controller struct {
-	beego.Controller
 	service *Service
 }
 
 func NewController(service *Service) *Controller {
 	return &Controller{service: service}
-}
-
-// URLMapping ...
-func (c *Controller) URLMapping() {
-	c.Mapping("Post", c.Post)
-	c.Mapping("GetOne", c.GetOne)
-	c.Mapping("GetAll", c.GetAll)
-	c.Mapping("Put", c.Put)
-	c.Mapping("Delete", c.Delete)
 }
 
 // Post ...
@@ -35,18 +17,6 @@ func (c *Controller) URLMapping() {
 // @Failure 403 body is empty
 // @router / [post]
 func (c *Controller) Post() {
-	var v models.Category
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddCategory(&v); err == nil {
-			c.Ctx.Output.SetStatus(201)
-			c.Data["xjson"] = v
-		} else {
-			c.Data["xjson"] = err.Error()
-		}
-	} else {
-		c.Data["xjson"] = err.Error()
-	}
-	c.ServeJSON()
 }
 
 // GetOne ...
@@ -57,15 +27,6 @@ func (c *Controller) Post() {
 // @Failure 403 :id is empty
 // @router /:id [get]
 func (c *Controller) GetOne() {
-	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetCategoryById(id)
-	if err != nil {
-		c.Data["xjson"] = err.Error()
-	} else {
-		c.Data["xjson"] = v
-	}
-	c.ServeJSON()
 }
 
 // GetAll ...
@@ -81,8 +42,6 @@ func (c *Controller) GetOne() {
 // @Failure 403
 // @router / [get]
 func (c *Controller) GetAll() {
-	c.Data["xjson"] = "我的测试接口"
-	c.ServeJSON()
 }
 
 // Put ...
@@ -94,19 +53,6 @@ func (c *Controller) GetAll() {
 // @Failure 403 :id is not int
 // @router /:id [put]
 func (c *Controller) Put() {
-	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	v := models.Category{Id: id}
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateCategoryById(&v); err == nil {
-			c.Data["xjson"] = "OK"
-		} else {
-			c.Data["xjson"] = err.Error()
-		}
-	} else {
-		c.Data["xjson"] = err.Error()
-	}
-	c.ServeJSON()
 }
 
 // Delete ...
@@ -117,12 +63,4 @@ func (c *Controller) Put() {
 // @Failure 403 id is empty
 // @router /:id [delete]
 func (c *Controller) Delete() {
-	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteCategory(id); err == nil {
-		c.Data["xjson"] = "OK"
-	} else {
-		c.Data["xjson"] = err.Error()
-	}
-	c.ServeJSON()
 }

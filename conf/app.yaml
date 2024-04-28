@@ -1,0 +1,13 @@
+app:
+  host: 127.0.0.1
+  port: 3306
+log:
+  suffix: log
+  maxSize: 5
+pgsql:
+  user: leellun
+  password: 123456
+  database: zhiqu1
+  host: 192.168.10.10
+  port: 32109
+  sslMode: disable

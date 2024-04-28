@@ -1,13 +1,11 @@
 package controller
 
 import (
-	"github.com/beego/beego/v2/server/web"
 	"zhiqu/infrastructure/constant"
 	"zhiqu/infrastructure/response"
 )
 
 type ErrorController struct {
-	web.ControllerInterface
 	BaseController
 }
 
