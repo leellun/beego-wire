@@ -6,7 +6,6 @@ import (
 	"gorm.io/gen"
 	"gorm.io/gen/field"
 	"gorm.io/gorm"
-	"strings"
 	"zhiqu/infrastructure/config"
 )
 
@@ -62,10 +61,6 @@ func main() {
 	// 自定义模型结体字段的标签
 	// 将特定字段名的 json 标签加上`string`属性,即 MarshalJSON 时该字段由数字类型转成字符串类型
 	jsonField := gen.FieldJSONTagWithNS(func(columnName string) (tagContent string) {
-		toStringField := `balance, `
-		if strings.Contains(toStringField, columnName) {
-			return columnName + ",string"
-		}
 		return columnName
 	})
 	// 将非默认字段名的字段定义为自动时间戳和软删除字段;

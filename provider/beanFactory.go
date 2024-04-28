@@ -6,7 +6,6 @@ import (
 	"zhiqu/app/category"
 	"zhiqu/app/login"
 	"zhiqu/app/user"
-	"zhiqu/controllers"
 )
 
 var (
@@ -16,10 +15,9 @@ var (
 )
 
 type BeanFactory struct {
-	CategoryController     *category.Controller
-	CollectVideoController *controllers.CollectVideoController
-	LoginController        *login.Controller
-	UserController         *user.Controller
+	CategoryController *category.Controller
+	LoginController    *login.Controller
+	UserController     *user.Controller
 }
 
 func init() {

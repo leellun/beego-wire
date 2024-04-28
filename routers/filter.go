@@ -1,7 +1,7 @@
 package routers
 
 var FilterUser = func() {
-	//_, ok := ctx.Input.Session(config.LoginSessionName).(models.User)
+	//_, ok := ctx.Input.Session(config.LoginSessionName).(model.User)
 	//
 	//if !ok {
 	//	if ctx.Input.IsAjax() {

@@ -2,7 +2,7 @@ package user
 
 import (
 	"zhiqu/infrastructure/extension/errox"
-	"zhiqu/models"
+	"zhiqu/model"
 )
 
 type Service struct {
@@ -12,7 +12,7 @@ type Service struct {
 func NewService(dao *Dao) *Service {
 	return &Service{dao}
 }
-func (s Service) GetUserById(id int) models.User {
+func (s Service) GetUserById(id int) model.User {
 	user, err := s.dao.GetUserById(id)
 	if err != nil {
 		panic(errox.WithMessage("用户不存在"))

@@ -7,8 +7,8 @@ type CommentController struct {
 // Post ...
 // @Title Post
 // @Description create Comment
-// @Param	body		body 	models.Comment	true		"body for Comment content"
-// @Success 201 {int} models.Comment
+// @Param	body		body 	model.Comment	true		"body for Comment content"
+// @Success 201 {int} model.Comment
 // @Failure 403 body is empty
 // @router / [post]
 func (c *CommentController) Post() {
@@ -18,7 +18,7 @@ func (c *CommentController) Post() {
 // @Title Get One
 // @Description get Comment by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Comment
+// @Success 200 {object} model.Comment
 // @Failure 403 :id is empty
 // @router /:id [get]
 func (c *CommentController) GetOne() {
@@ -33,7 +33,7 @@ func (c *CommentController) GetOne() {
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Comment
+// @Success 200 {object} model.Comment
 // @Failure 403
 // @router / [get]
 func (c *CommentController) GetAll() {
@@ -43,8 +43,8 @@ func (c *CommentController) GetAll() {
 // @Title Put
 // @Description update the Comment
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Comment	true		"body for Comment content"
-// @Success 200 {object} models.Comment
+// @Param	body		body 	model.Comment	true		"body for Comment content"
+// @Success 200 {object} model.Comment
 // @Failure 403 :id is not int
 // @router /:id [put]
 func (c *CommentController) Put() {

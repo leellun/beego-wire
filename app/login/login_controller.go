@@ -22,7 +22,7 @@ func (c *Controller) URLMapping() {
 // @Title 登录
 // @Description 登录
 // @Tag Login
-// @Param	data		body 	models.Media	true		"登录数据"
+// @Param	data		body 	model.Media	true		"登录数据"
 // @Success 200 {object} response.RestResponse
 // @router / [post]
 func (c *Controller) Login() {

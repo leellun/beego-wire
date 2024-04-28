@@ -12,8 +12,8 @@ func NewController(service *Service) *Controller {
 // Post ...
 // @Title Post
 // @Description create Category
-// @Param	body		body 	models.Category	true		"body for Category content"
-// @Success 201 {int} models.Category
+// @Param	body		body 	model.Category	true		"body for Category content"
+// @Success 201 {int} model.Category
 // @Failure 403 body is empty
 // @router / [post]
 func (c *Controller) Post() {
@@ -23,7 +23,7 @@ func (c *Controller) Post() {
 // @Title Get One
 // @Description get Category by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Category
+// @Success 200 {object} model.Category
 // @Failure 403 :id is empty
 // @router /:id [get]
 func (c *Controller) GetOne() {
@@ -38,7 +38,7 @@ func (c *Controller) GetOne() {
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Category
+// @Success 200 {object} model.Category
 // @Failure 403
 // @router / [get]
 func (c *Controller) GetAll() {
@@ -48,8 +48,8 @@ func (c *Controller) GetAll() {
 // @Title Put
 // @Description update the Category
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Category	true		"body for Category content"
-// @Success 200 {object} models.Category
+// @Param	body		body 	model.Category	true		"body for Category content"
+// @Success 200 {object} model.Category
 // @Failure 403 :id is not int
 // @router /:id [put]
 func (c *Controller) Put() {
