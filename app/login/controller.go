@@ -26,7 +26,7 @@ func (c *Controller) Login(ctx *gin.Context) {
 	var v Req
 	if err := ctx.ShouldBindJSON(&v); err == nil {
 		c.service.Login(v)
-		c.WriteJson(ctx, response.Error(err.Error()))
+		c.WriteJson(ctx, response.Success())
 	} else {
 		c.WriteJson(ctx, response.Error(err.Error()))
 	}

@@ -8,17 +8,21 @@ type RestResponse struct {
 	Data any               `json:"data"`
 }
 
-func Success(data any, msg string) RestResponse {
-	return RestResponse{
-		Code: constant.SUCCESS,
-		Msg:  msg,
-		Data: data,
+func Success(msg ...string) RestResponse {
+	str := "操作成功"
+	if len(msg) > 0 {
+		str = msg[0]
 	}
+	return RestResponse{Code: constant.SUCCESS, Msg: str}
 }
-func Ok(data any) RestResponse {
+func Ok(data any, msg ...string) RestResponse {
+	str := "操作成功"
+	if len(msg) > 0 {
+		str = msg[0]
+	}
 	return RestResponse{
 		Code: constant.SUCCESS,
-		Msg:  "操作成功",
+		Msg:  str,
 		Data: data,
 	}
 }
