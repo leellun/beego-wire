@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/beego/beego/v2/server/web/context"
 	"strconv"
 	"strings"
 	"zhiqu/infrastructure/controller"
@@ -21,15 +22,6 @@ func NewController(service *Service) *Controller {
 	a := &Controller{service: service}
 	fmt.Printf("====%v\n", a)
 	return a
-}
-
-// URLMapping ...
-func (c *Controller) URLMapping() {
-	c.Mapping("Post", c.Post)
-	c.Mapping("GetOne", c.GetOne)
-	c.Mapping("GetAll", c.GetAll)
-	c.Mapping("Put", c.Put)
-	c.Mapping("Delete", c.Delete)
 }
 
 // Post ...
@@ -61,13 +53,15 @@ func (c *Controller) Post() {
 // @Success 200 {object} models.User
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *Controller) GetOne() {
+func (c *Controller) GetOne(ctx *context.Context) {
 	fmt.Printf("====%v\n", c)
-	idStr := c.Ctx.Input.Param(":id")
+	idStr := ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v := c.service.GetUserById(id)
-	c.WriteJson(v)
-	c.WriteJson(response.Error(""))
+	ctx.Output.JSON(v, true, true)
+}
+func (c *Controller) Get(ctx *context.Context) {
+	c.WriteJson(response.Ok("消息正常"))
 }
 
 // GetAll ...

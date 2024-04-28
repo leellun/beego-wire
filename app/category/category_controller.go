@@ -2,15 +2,16 @@ package category
 
 import (
 	"encoding/json"
+	"github.com/beego/beego/v2/server/web/context"
 	"strconv"
+	"zhiqu/infrastructure/controller"
+	"zhiqu/infrastructure/response"
 	"zhiqu/models"
-
-	beego "github.com/beego/beego/v2/server/web"
 )
 
 // Controller operations for Category
 type Controller struct {
-	beego.Controller
+	controller.BaseController
 	service *Service
 }
 
@@ -66,6 +67,9 @@ func (c *Controller) GetOne() {
 		c.Data["xjson"] = v
 	}
 	c.ServeJSON()
+}
+func (c *Controller) Get(ctx *context.Context) {
+	c.WriteJson(response.Ok("消息正常"))
 }
 
 // GetAll ...
