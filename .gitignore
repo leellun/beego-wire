@@ -1,2 +1,4 @@
 swagger.zip
 /swagger
+*.exe
+/dal
