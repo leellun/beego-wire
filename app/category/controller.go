@@ -1,5 +1,7 @@
 package category
 
+import "github.com/gin-gonic/gin"
+
 // Controller operations for Category
 type Controller struct {
 	service *Service
@@ -26,7 +28,7 @@ func (c *Controller) Post() {
 // @Success 200 {object} model.Category
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *Controller) GetOne() {
+func (c *Controller) GetOne(ctx *gin.Context) {
 }
 
 // GetAll ...
