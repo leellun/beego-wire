@@ -3,7 +3,7 @@ app:
   port: 8080
   mode: dev
 log:
-  suffix: log
+  suffix: logz
   maxSize: 5
 pgsql:
   user: leellun

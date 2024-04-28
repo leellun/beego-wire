@@ -3,9 +3,9 @@ package response
 import "zhiqu/infrastructure/constant"
 
 type RestResponse struct {
-	Code constant.HttpCode
-	Msg  string
-	Data any
+	Code constant.HttpCode `json:"code"`
+	Msg  string            `json:"msg"`
+	Data any               `json:"data"`
 }
 
 func Success(data any, msg string) RestResponse {

@@ -2,7 +2,10 @@ package user
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
+	"strconv"
 	"zhiqu/infrastructure/controller"
+	"zhiqu/infrastructure/response"
 )
 
 // Controller operations for User
@@ -34,13 +37,11 @@ func (c *Controller) Post() {
 // @Success 200 {object} model.User
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *Controller) GetOne() {
-	//fmt.Printf("====%v\n", c)
-	//idStr := c.Ctx.Input.Param(":id")
-	//id, _ := strconv.Atoi(idStr)
-	//v := c.service.GetUserById(id)
-	//c.WriteJson(v)
-	//c.WriteJson(response.Error(""))
+func (c *Controller) GetOne(ctx *gin.Context) {
+	idStr, _ := ctx.Params.Get("id")
+	id, _ := strconv.ParseInt(idStr, 10, 64)
+	v := c.service.GetUserById(id)
+	c.WriteJson(ctx, response.Ok(v))
 }
 
 // GetAll ...

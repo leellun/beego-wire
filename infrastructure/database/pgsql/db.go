@@ -1,30 +1,19 @@
 package pgsql
 
 import (
+	"fmt"
 	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"zhiqu/infrastructure/config"
 )
 
-func init() {
-	//pgsqlUser, _ := beego.AppConfig.String("pgsqlUser")
-	//pgsqlPass, _ := beego.AppConfig.String("pgsqlPass")
-	//pgsqlDbName, _ := beego.AppConfig.String("pgsqlDbName")
-	//pgsqlHost, _ := beego.AppConfig.String("pgsqlHost")
-	//pgsqlPort, _ := beego.AppConfig.String("pgsqlPort")
-	//pgsqlSslMode, _ := beego.AppConfig.String("pgsqlSslMode")
-	// 注册驱动
-	//err := orm.RegisterDriver("postgres", orm.DRPostgres)
-	//if err != nil {
-	//	panic(err)
-	//}
-
-	// 设置默认数据库
-	//err = orm.RegisterDataBase("default", "postgres", fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=%s", pgsqlUser, pgsqlPass, pgsqlDbName, pgsqlHost, pgsqlPort, pgsqlSslMode))
-	//if err != nil {
-	//	panic(err)
-	//}
-}
-
-type DB struct {
-	gorm.DB
+func NewPgsqlDB() *gorm.DB {
+	var PostgresConfig = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=%s", config.AppConfig.Pgsql.Host, config.AppConfig.Pgsql.User, config.AppConfig.Pgsql.Password, config.AppConfig.Pgsql.Database, config.AppConfig.Pgsql.Port, config.AppConfig.Pgsql.SslMode)
+	// 连接数据库
+	db, err := gorm.Open(postgres.Open(PostgresConfig))
+	if err != nil {
+		panic(err)
+	}
+	return db
 }

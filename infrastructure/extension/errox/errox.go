@@ -1,6 +1,7 @@
 package errox
 
 type Exception struct {
+	error
 	Code    int
 	Message string
 }

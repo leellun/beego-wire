@@ -1,5 +1,8 @@
 package app
 
-import "go.uber.org/fx"
+import (
+	"go.uber.org/fx"
+	"zhiqu/app/user"
+)
 
-var Module = fx.Module("app")
+var Module = fx.Module("app", user.Module)

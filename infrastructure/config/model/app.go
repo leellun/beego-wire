@@ -2,7 +2,7 @@ package model
 
 type Config struct {
 	App   *App   `yaml:"app"`
-	Log   *Log   `yaml:"log"`
+	Log   *Log   `yaml:"logz"`
 	Pgsql *Pgsql `yaml:"pgsql"`
 }
 
