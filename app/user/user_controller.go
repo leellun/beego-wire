@@ -3,9 +3,11 @@ package user
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 	"zhiqu/infrastructure/controller"
+	"zhiqu/infrastructure/response"
 	"zhiqu/models"
 )
 
@@ -16,7 +18,9 @@ type Controller struct {
 }
 
 func NewController(service *Service) *Controller {
-	return &Controller{service: service}
+	a := &Controller{service: service}
+	fmt.Printf("====%v\n", a)
+	return a
 }
 
 // URLMapping ...
@@ -58,10 +62,12 @@ func (c *Controller) Post() {
 // @Failure 403 :id is empty
 // @router /:id [get]
 func (c *Controller) GetOne() {
+	fmt.Printf("====%v\n", c)
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v := c.service.GetUserById(id)
 	c.WriteJson(v)
+	c.WriteJson(response.Error(""))
 }
 
 // GetAll ...

@@ -8,7 +8,11 @@ import (
 )
 
 func main() {
+	//_, err := wire.NewApp()
+	//if err != nil {
+	//	panic(err)
+	//}
+	beego.BConfig.RecoverFunc = xrecover.RecoverPanic
 	beego.ErrorController(controller.ErrorController{})
-	beego.ErrorHandler("panic", xrecover.HandlePanic())
 	beego.Run()
 }

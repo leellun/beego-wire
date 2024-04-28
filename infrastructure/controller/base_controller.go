@@ -15,5 +15,5 @@ func (c *BaseController) WriteJson(data interface{}) {
 	if err != nil {
 		return
 	}
-	c.StopRun()
+	//c.StopRun()
 }

@@ -1,4 +1,4 @@
-package controllers
+package comment
 
 import (
 	"encoding/json"

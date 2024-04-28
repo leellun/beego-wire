@@ -9,22 +9,17 @@ package routers
 
 import (
 	beego "github.com/beego/beego/v2/server/web"
+	"zhiqu/app/category"
+	"zhiqu/app/comment"
+	"zhiqu/app/login"
+	"zhiqu/app/user"
 	"zhiqu/controllers"
-	"zhiqu/wire"
 )
 
 func init() {
-	beanFactory, err := wire.NewApp()
-	if err != nil {
-		panic(err)
-	}
 	ns := beego.NewNamespace("/v1",
 
-		beego.NSNamespace("/category",
-			beego.NSInclude(
-				beanFactory.CategoryController,
-			),
-		),
+		beego.NSNamespace("/category", beego.NSInclude(&category.Controller{})),
 
 		beego.NSNamespace("/collect_video",
 			beego.NSInclude(
@@ -40,7 +35,7 @@ func init() {
 
 		beego.NSNamespace("/user",
 			beego.NSInclude(
-				beanFactory.UserController,
+				&user.Controller{},
 			),
 		),
 
@@ -76,7 +71,7 @@ func init() {
 
 		beego.NSNamespace("/comment",
 			beego.NSInclude(
-				&controllers.CommentController{},
+				&comment.CommentController{},
 			),
 		),
 
@@ -99,9 +94,9 @@ func init() {
 		),
 
 		beego.NSNamespace("/reply", beego.NSInclude(&controllers.ReplyController{})),
-		beego.NSNamespace("/login", beego.NSInclude(beanFactory.LoginController)),
+		beego.NSNamespace("/login", beego.NSInclude(&login.Controller{})),
 	)
-	//beego.SetStaticPath("/swagger", "swagger")
-	beego.AddNamespace(ns)
 	// 注册Swagger路由
+	beego.SetStaticPath("/swagger", "swagger")
+	beego.AddNamespace(ns)
 }

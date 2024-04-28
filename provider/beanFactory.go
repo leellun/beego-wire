@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	appBeanFactory *BeanFactory
+	AppBeanFactory *BeanFactory
 	once           sync.Once
 	BeeLog         *logs.BeeLogger
 )
@@ -31,12 +31,10 @@ func init() {
 }
 func NewBeanFactory(loginController *login.Controller,
 	categoryController *category.Controller, userController *user.Controller) *BeanFactory {
-	once.Do(func() {
-		appBeanFactory = &BeanFactory{
-			LoginController:    loginController,
-			CategoryController: categoryController,
-			UserController:     userController,
-		}
-	})
-	return appBeanFactory
+	AppBeanFactory = &BeanFactory{
+		LoginController:    loginController,
+		CategoryController: categoryController,
+		UserController:     userController,
+	}
+	return AppBeanFactory
 }

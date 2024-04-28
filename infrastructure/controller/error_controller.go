@@ -25,3 +25,7 @@ func (c *ErrorController) ErrorDb() {
 	c.Ctx.Output.Status = int(constant.INTERNAL_SERVER_ERROR)
 	c.WriteJson(response.ErrorCode("数据库操作异常", constant.INTERNAL_SERVER_ERROR))
 }
+func (c *ErrorController) Error() {
+	c.Ctx.Output.Status = int(constant.INTERNAL_SERVER_ERROR)
+	c.WriteJson(response.ErrorCode("数据库操作异常", constant.INTERNAL_SERVER_ERROR))
+}

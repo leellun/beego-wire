@@ -3,34 +3,34 @@ package response
 import "zhiqu/infrastructure/constant"
 
 type RestResponse struct {
-	code constant.HttpCode
-	msg  string
-	data any
+	Code constant.HttpCode
+	Msg  string
+	Data any
 }
 
 func Success(data any, msg string) RestResponse {
 	return RestResponse{
-		code: constant.SUCCESS,
-		msg:  msg,
-		data: data,
+		Code: constant.SUCCESS,
+		Msg:  msg,
+		Data: data,
 	}
 }
 func Ok(data any) RestResponse {
 	return RestResponse{
-		code: constant.SUCCESS,
-		msg:  "操作成功",
-		data: data,
+		Code: constant.SUCCESS,
+		Msg:  "操作成功",
+		Data: data,
 	}
 }
 func Error(msg string) RestResponse {
 	return RestResponse{
-		code: constant.ERROR,
-		msg:  msg,
+		Code: constant.ERROR,
+		Msg:  msg,
 	}
 }
 func ErrorCode(msg string, code constant.HttpCode) RestResponse {
 	return RestResponse{
-		code: code,
-		msg:  msg,
+		Code: code,
+		Msg:  msg,
 	}
 }
