@@ -7,10 +7,9 @@ type Config struct {
 }
 
 type App struct {
-	Host     string `yaml:"host"`
-	Port     int    `yaml:"port"`
-	Username string `yaml:"username"`
-	Password string `yaml:"password"`
+	Host string `yaml:"host"`
+	Port int    `yaml:"port"`
+	Mode string `yaml:"mode"`
 }
 
 type Log struct {

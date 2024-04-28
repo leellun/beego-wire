@@ -1,7 +1,6 @@
 package provider
 
 import (
-	"github.com/beego/beego/v2/core/logs"
 	"sync"
 	"zhiqu/app/category"
 	"zhiqu/app/login"
@@ -11,7 +10,6 @@ import (
 var (
 	AppBeanFactory *BeanFactory
 	once           sync.Once
-	BeeLog         *logs.BeeLogger
 )
 
 type BeanFactory struct {
@@ -21,11 +19,6 @@ type BeanFactory struct {
 }
 
 func init() {
-	BeeLog = logs.NewLogger()
-	err := BeeLog.SetLogger(logs.AdapterConsole)
-	if err != nil {
-		return
-	}
 }
 func NewBeanFactory(loginController *login.Controller,
 	categoryController *category.Controller, userController *user.Controller) *BeanFactory {

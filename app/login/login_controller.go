@@ -1,7 +1,7 @@
 package login
 
 import (
-	"encoding/json"
+	"github.com/gin-gonic/gin"
 	"zhiqu/infrastructure/controller"
 	"zhiqu/infrastructure/response"
 )
@@ -14,9 +14,6 @@ type Controller struct {
 func NewController(service *Service) *Controller {
 	return &Controller{service: service}
 }
-func (c *Controller) URLMapping() {
-	c.Mapping("Login", c.Login)
-}
 
 // Login 登录
 // @Title 登录
@@ -25,12 +22,12 @@ func (c *Controller) URLMapping() {
 // @Param	data		body 	model.Media	true		"登录数据"
 // @Success 200 {object} response.RestResponse
 // @router / [post]
-func (c *Controller) Login() {
+func (c *Controller) Login(ctx *gin.Context) {
 	var v Req
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+	if err := ctx.ShouldBindJSON(&v); err == nil {
 		c.service.Login(v)
-		c.WriteJson(response.Error(err.Error()))
+		c.WriteJson(ctx, response.Error(err.Error()))
 	} else {
-		c.WriteJson(response.Error(err.Error()))
+		c.WriteJson(ctx, response.Error(err.Error()))
 	}
 }

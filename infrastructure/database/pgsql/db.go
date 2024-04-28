@@ -2,6 +2,7 @@ package pgsql
 
 import (
 	_ "github.com/lib/pq"
+	"gorm.io/gorm"
 )
 
 func init() {
@@ -24,7 +25,6 @@ func init() {
 	//}
 }
 
-//func NewPgsqlOrm() orm.Ormer {
-//	ormer := orm.NewOrm()
-//	return ormer
-//}
+type DB struct {
+	gorm.DB
+}

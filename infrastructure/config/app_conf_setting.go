@@ -12,7 +12,14 @@ var (
 )
 
 func InitConfig() {
-	yamlFile, err := os.ReadFile("./conf/app.yaml")
+	profile := os.Getenv("profile")
+	var filename string
+	if profile == "" {
+		filename = "./conf/app.yaml"
+	} else {
+		filename = fmt.Sprintf("./conf/app_%s.yaml", profile)
+	}
+	yamlFile, err := os.ReadFile(filename)
 	if err != nil {
 		panic(err)
 	}
