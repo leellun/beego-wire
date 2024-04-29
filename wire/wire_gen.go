@@ -7,6 +7,7 @@
 package wire
 
 import (
+	"zhiqu/app"
 	"zhiqu/app/category"
 	"zhiqu/app/login"
 	"zhiqu/app/user"
@@ -18,16 +19,20 @@ import (
 
 // wire.go 初始化模块
 func NewApp() (*provider.BeanFactory, error) {
-	dao := login.NewDao()
-	service := login.NewService(dao)
-	controller := login.NewController(service)
-	categoryDao := category.NewDao()
-	categoryService := category.NewService(categoryDao)
-	categoryController := category.NewController(categoryService)
 	ormer := pgsql.NewPgsqlOrm()
+	dao := category.NewDao(ormer)
+	service := category.NewService(dao)
+	controller := category.NewController(service)
+	fxRouter := category.NewAppRouter(controller)
+	loginDao := login.NewDao()
+	loginService := login.NewService(loginDao)
+	loginController := login.NewController(loginService)
+	loginFxRouter := login.NewAppRouter(loginController)
 	userDao := user.NewDao(ormer)
 	userService := user.NewService(userDao)
 	userController := user.NewController(userService)
-	beanFactory := provider.NewBeanFactory(controller, categoryController, userController)
+	userFxRouter := user.NewAppRouter(userController)
+	appFxRouter := app.NewAppRouter(fxRouter, loginFxRouter, userFxRouter)
+	beanFactory := provider.NewBeanFactory(appFxRouter)
 	return beanFactory, nil
 }

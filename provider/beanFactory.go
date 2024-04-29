@@ -3,10 +3,7 @@ package provider
 import (
 	"github.com/beego/beego/v2/core/logs"
 	"sync"
-	"zhiqu/app/category"
-	"zhiqu/app/login"
-	"zhiqu/app/user"
-	"zhiqu/controllers"
+	"zhiqu/app"
 )
 
 var (
@@ -16,10 +13,7 @@ var (
 )
 
 type BeanFactory struct {
-	CategoryController     *category.Controller
-	CollectVideoController *controllers.CollectVideoController
-	LoginController        *login.Controller
-	UserController         *user.Controller
+	AppFxRouter *app.FxRouter
 }
 
 func init() {
@@ -29,12 +23,11 @@ func init() {
 		return
 	}
 }
-func NewBeanFactory(loginController *login.Controller,
-	categoryController *category.Controller, userController *user.Controller) *BeanFactory {
-	AppBeanFactory = &BeanFactory{
-		LoginController:    loginController,
-		CategoryController: categoryController,
-		UserController:     userController,
-	}
+func NewBeanFactory(appFxRouter *app.FxRouter) *BeanFactory {
+	once.Do(func() {
+		AppBeanFactory = &BeanFactory{
+			AppFxRouter: appFxRouter,
+		}
+	})
 	return AppBeanFactory
 }

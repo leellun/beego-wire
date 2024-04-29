@@ -10,5 +10,5 @@ import "github.com/google/wire"
 
 // wire.go 初始化模块
 func NewApp() (*provider.BeanFactory, error) {
-	panic(wire.Build(provider.AppSet))
+	panic(wire.Build(provider.Set))
 }
